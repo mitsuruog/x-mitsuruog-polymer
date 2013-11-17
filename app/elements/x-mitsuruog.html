@@ -1,0 +1,130 @@
+<polymer-element name="x-mitsuruog"  attributes="">
+  <template>
+    <style>
+      @host { :scope {display: block;}} 
+
+      .card {
+        width: 300px;
+        height: 180px;
+        padding: 10px;
+        font-size: 12px;
+        box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+        -webkit-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+        -moz-box-shadow:rgba(113, 135, 164, 0.65098) 0px 0px 6px 3px;
+      }
+
+      .person {
+        padding-right: 20px;
+        text-align: right;
+      }
+
+      .person:after {
+        clear: both;
+      }
+
+      .person:after,
+      .person:before {
+        display: table;
+        content: " ";
+      }
+
+      .photo {
+        width: 100px;
+        height: 100px;
+        float: left;
+        border-radius: 50%;
+        background-image: url('mitsuruog.jpeg');
+        background-size: 100px;
+      }
+
+      .role {
+        margin-top: 20px;
+      }
+
+      .name {
+        font-size: 200%;
+        padding-left: 10px;
+      }
+
+      .contact {
+
+      }
+
+      .contact dt {
+        float: left;
+        text-align: right;
+        margin-right: 7px;
+      }
+
+      .contact dd {
+        margin-left: 0;
+      }
+
+      .contact dd:after {
+        clear: both;
+      }
+
+      .contact dd:after,
+      .contact dd:before {
+        display: table;
+        content: " ";
+      }
+
+      .hide {
+        display: none;
+      }
+
+    </style>
+   
+    <a href="#{{name}}" class="x-mitsuruog">{{name}}</a>
+    <div class="card hide">
+      <div class="person">
+        <div class="photo"></div>
+        <div class="role">{{role}}</div>
+        <div class="name">{{name}}</div>
+      </div>
+      <dl class="contact">
+        <dt>T:</dt>
+        <dd><a href="{{contact.twitter}}" target="_blank">{{contact.twitter}}</a></dd>
+        <dt>F:</dt>
+        <dd><a href="{{contact.facebook}}" target="_blank">{{contact.facebook}}</a></dd>
+        <dt>G:</dt>
+        <dd><a href="{{contact.github}}" target="_blank">{{contact.github}}</a></dd>
+        <dt>B:</dt>
+        <dd><a href="{{contact.blog}}" target="_blank">{{contact.blog}}</a></dd>
+      </dl>
+    </div>
+
+  </template>
+  <script>
+    Polymer('x-mitsuruog', {
+      //applyAuthorStyles: true,
+      //resetStyleInheritance: true,
+
+      name: 'mitsuruog',
+      role: 'フロントエンジニア',
+      contact: {
+        twitter: 'https://twitter.com/mitsuruog',
+        facebook: 'https://www.facebook.com/mitsuru.ogawa.33',
+        github: 'https://github.com/mitsuruog',
+        blog: 'http://blog.mitsuruog.info/'
+      },
+
+      created: function() { },
+      enteredView: function() { },
+      leftView: function() { },
+      attributeChanged: function(attrName, oldVal, newVal) { },
+      ready: function(){
+
+        var card = this.shadowRoot.querySelector('.card');
+
+        this.shadowRoot.querySelector('.x-mitsuruog').addEventListener('click', function(e){
+          e.preventDefault();
+          card.classList.toggle('hide');
+        });
+
+      }
+
+    });
+  </script>
+</polymer-element>
